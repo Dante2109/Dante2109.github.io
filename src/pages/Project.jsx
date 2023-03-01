@@ -9,7 +9,7 @@ export const Project=({data,title,description,stack,i,codebase,deployed})=>{
     AOS.init();
   }, [])
     return (
-      <div data-aos={i%2===0?"fade-up-right":"fade-up-left"} data-aos-duration="500">
+      <div data-aos={i%2===0?"fade-up-right":"fade-up-left"} data-aos-duration="500"  overflowX={"hidden"}>
         <Box w="80%" m="auto" border="1px solid rgb(50,12,11)" justifyContent={"space-evenly"}
         bgColor="rgb(251,249,247)"
         
