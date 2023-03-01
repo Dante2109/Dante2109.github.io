@@ -1,17 +1,32 @@
 {
   "files": {
     "main.css": "/static/css/main.38a3e161.css",
-    "main.js": "/static/js/main.e6e2158f.js",
+    "main.js": "/static/js/main.a0c9a9e9.js",
     "static/js/787.1ed0c42c.chunk.js": "/static/js/787.1ed0c42c.chunk.js",
     "static/media/bg1.jpg": "/static/media/bg1.986238f09d4aa17231fc.jpg",
+    "static/media/Akshay_Verma_Resume.pdf": "/static/media/Akshay_Verma_Resume.b75da1a16abb9172d8fd.pdf",
+    "static/media/1012818_code_development_logo_nodejs_icon.svg": "/static/media/1012818_code_development_logo_nodejs_icon.a3855f48cc6f7f7fbd784a741ebfe505.svg",
     "static/media/Akshayverma1.png": "/static/media/Akshayverma1.eed923b91107e7dea967.png",
+    "static/media/9118036_nextjs_fill_icon.svg": "/static/media/9118036_nextjs_fill_icon.bd8d58a6a7f1f7b2591b6859b336ac83.svg",
+    "static/media/redux.svg": "/static/media/redux.0e4fb1c819ac4c060c92343147d4ccf7.svg",
+    "static/media/icons8-mongoose.svg": "/static/media/icons8-mongoose.46e69494b170801ca07dc944935e6049.svg",
+    "static/media/javascript_3.svg": "/static/media/javascript_3.1a49b3ea971b540d5434fd9761c650f3.svg",
+    "static/media/icons8-github.svg": "/static/media/icons8-github.e7e2bc8e3b94958f09a23ee8a5aaae7a.svg",
+    "static/media/4202020_css3_html_logo_social_social media_icon.svg": "/static/media/4202020_css3_html_logo_social_social media_icon.6b6f52e770d91259d3a93d7438a09d7c.svg",
+    "static/media/317755_badge_html_html5_achievement_award_icon.svg": "/static/media/317755_badge_html_html5_achievement_award_icon.2b2e078a005e3b67d05cd71b6b2b0f7f.svg",
+    "static/media/icons8-express-js.svg": "/static/media/icons8-express-js.13e4b3884f318c648bfe0207aa64c8dc.svg",
+    "static/media/icons8-git.svg": "/static/media/icons8-git.43d387b77657117c0e407816cbf72476.svg",
     "index.html": "/index.html",
+    "static/media/icons8-visual-studio-code-2019.svg": "/static/media/icons8-visual-studio-code-2019.c95ccce217b9216b765737214d743d02.svg",
+    "static/media/icons8-chakra-ui.svg": "/static/media/icons8-chakra-ui.3cc0dcf33272ae6294329e6a24f995e9.svg",
+    "static/media/icons8-npm.svg": "/static/media/icons8-npm.8c0606a7c392a7d33d03e67c80d6f40a.svg",
+    "static/media/9035134_logo_vercel_icon.svg": "/static/media/9035134_logo_vercel_icon.0cf2d1806be941f7e5d54f7fce19d8a5.svg",
     "main.38a3e161.css.map": "/static/css/main.38a3e161.css.map",
-    "main.e6e2158f.js.map": "/static/js/main.e6e2158f.js.map",
+    "main.a0c9a9e9.js.map": "/static/js/main.a0c9a9e9.js.map",
     "787.1ed0c42c.chunk.js.map": "/static/js/787.1ed0c42c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.38a3e161.css",
-    "static/js/main.e6e2158f.js"
+    "static/js/main.a0c9a9e9.js"
   ]
 }
