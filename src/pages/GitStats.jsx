@@ -17,15 +17,15 @@ const GitStats = ({g}) => {
       <GitHubCalendar username="dante2109"  />
       </Box>
       <Box  style={box} padding={{base:"0px", md:"30px"}} border="1px solid black" width="70%" marginBottom="15px" >
-        <Text style={TextStyle} >Akshay's's streak</Text>
+        <Text style={TextStyle} >Akshay's streak</Text>
         <img alt="Akshay's's streak" src="https://github-readme-streak-stats.herokuapp.com/?user=dante2109&stroke=0000&border=000000"/>
       </Box>
       <Box  style={box} padding={{base:"0px", md:"30px"}} border="1px solid black" width="70%" marginBottom="15px" >
-        <Text style={TextStyle} >Akshay's's Github Stats</Text>
+        <Text style={TextStyle} >Akshay's Github Stats</Text>
         <img alt="Akshay's's Github Stats" src="https://github-readme-stats.vercel.app/api?username=dante2109&show_icons=true&count_private=true&border_color=000000" />
       </Box>
       <Box style={box}  padding={{base:"0px", md:"30px"}} border="1px solid black" width="70%" marginBottom="0px" >
-        <Text style={TextStyle} >Akshay's's Top Languages</Text>
+        <Text style={TextStyle} >Akshay's Top Languages</Text>
         <img alt="Akshay's's Top Languages" src="https://github-readme-stats.vercel.app/api/top-langs/?username=dante2109&langs_count=8&count_private=true&layout=compact&border_color=000000" />
       </Box>
     </p>
