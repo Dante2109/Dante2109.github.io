@@ -44,36 +44,44 @@ let ProjetData=[
         description:`EngageBay is an integrated marketing, sales, support and CRM solution designed to help small to midsize enterprises acquire, engage and convert website visitors into customers. 
         The cloud-based platform lets businesses use marketing tools to build relationships with customers and retain them for a lifetime`,
         TechStack:"HTML/CSS | JAVASCRIPT | GITHUB",
-        data:engage_bay
+        data:engage_bay,
+        deployed:"https://famous-florentine-ec7142.netlify.app/",
+        codbase:"https://github.com/Dante2109/EngageBay"
     },
     {
         title:"JCrew",
         description:"J.Crew Group, Inc., is an American multi-brand, multi-channel, specialty retailer. The company offers an assortment of women's, men's, and children's apparel and accessories, including swimwear, outerwear, lounge-wear, bags, sweaters, denim, dresses, suiting, jewelry, and shoes.",
         TechStack:"HTML/CSS | JAVASCRIPT | GITHUB",
-        data:jcrew
+        data:jcrew,
+        deployed:"https://acras.netlify.app/",
+        codbase:"https://github.com/Dante2109/enormous-step-3337"
     },
     {
         title:"RentoMojo",
         description:"Rentomojo is an online rental solution for all the furnishing needs including furniture, furnishings, home appliances, and bikes.",
         TechStack:"HTML/CSS | REACTJS | AXIOS | CHAKRA UI | JAVASCRIPT | REACT ROUTER DOM | GITHUB ",
-        data:rentomojo
+        data:rentomojo,
+        deployed:"https://rentomojo-dante2109.vercel.app/",
+        codbase:"https://github.com/Dante2109/ashamed-letter-8335/tree/master/rentomojo"
     },
     {
         title:"snapdeal",
         description:"Snapdeal website, an e-commerce website which deals with the sales of various products like clothing products, electronics etc. This is an collaborative project completed in a span of 5 days.",
         TechStack:"REACT | HTML/CSS | JAVASCRIPT | CHAKRAUI | REACT ROUTER DOM | AXIOS | GITHUB",
-        data:snapdeal
+        data:snapdeal,
+        deployed:"https://darling-mooncake-57603b.netlify.app/",
+        codbase:"https://github.com/fahad9988/warm-afternoon-3310/tree/master/warm-afternoon-3310"
     }
 ]
-export const Projects=()=>{
+export const Projects=({p})=>{
     return (
-        <Box textAlign={"center"} my="50px">
+        <Box ref={p} textAlign={"center"} my="50px">
             <Heading pb="70px">
-                Projects
+                PROJECTS
             </Heading>
             <SimpleGrid columns={{base:1,sm:1,md:2}} gap="30px">
             {ProjetData.map((el,i)=>(
-                <Project i={i} data={el.data} title={el.title} description={el.description} stack={el.TechStack}></Project>
+                <Project i={i} data={el.data} title={el.title} description={el.description} stack={el.TechStack} codebase={el.codbase} deployed={el.deployed}></Project>
             ))}
             </SimpleGrid>
         </Box>

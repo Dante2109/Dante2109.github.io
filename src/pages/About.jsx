@@ -4,12 +4,12 @@ import React,{useEffect} from "react";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Box,Heading,Stack,Image,Text } from "@chakra-ui/react";
-function About() {
+function About({a}) {
     useEffect(() => {
         AOS.init();
       }, [])
   return (
-    <Box data-aos="fade-up" data-aos-delay="600ms" w="85%" py={"100px"} m="auto" textAlign={"center"}>
+    <Box ref={a} data-aos="fade-up" data-aos-delay="600ms" w="85%" py={"100px"} m="auto" pt="100px" textAlign={"center"}>
         <Heading mb="50px">
             About Me
         </Heading>

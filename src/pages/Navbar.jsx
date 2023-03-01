@@ -22,12 +22,38 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from '@chakra-ui/icons';
+import resume from "../assets/Akshay_Verma_Resume.pdf"
 import image from "../images/Akshayverma1.png"
-function Navbar() {
+function Navbar({h,a,p,c,g,tt}) {
 const { isOpen, onToggle } = useDisclosure();
+// const hom=useRef(null);
+// const homepage=useRef(null);
+// const homepage=useRef(null);
+const NAV_ITEMS = [
+  {
+    label: 'Home',
+    href:() => h.current.scrollIntoView({behavior:"smooth"})
+  },
+  {
+    label: 'About',
+   href:() => a.current.scrollIntoView({behavior:"smooth",block:"end"})
+  },
+  {
+    label: 'Skills',
+    href:() => tt.current.scrollIntoView({behavior:"smooth",block:"start"})
+  },
+  {
+    label: 'Projects',
+    href:() => p.current.scrollIntoView({behavior:"smooth",block:"start"})
+  },
+  {
+    label: 'Contact',
+     href:() => c.current.scrollIntoView({behavior:"smooth",block:"end"})
+  },
+];
 
   return (
-    <Box pos="sticky" top="0" zIndex={2} color="rgb(251,249,247)">
+    <Box color="rgb(251,249,247)">
       <Flex
         bg={useColorModeValue('white', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
@@ -69,23 +95,22 @@ const { isOpen, onToggle } = useDisclosure();
           direction={'row'}
          >
           <Flex display={{ base: 'none', md: 'flex' }} mr={10}>
-            <DesktopNav />
+            <DesktopNav NAV_ITEMS={NAV_ITEMS}/>
           </Flex>
         </Stack>
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
-        <MobileNav />
+        <MobileNav tog={onToggle} NAV_ITEMS={NAV_ITEMS} />
       </Collapse>
     </Box>
   );
 }
 
-const DesktopNav = () => {
+const DesktopNav = ({NAV_ITEMS}) => {
   const linkColor = useColorModeValue('gray.600', 'gray.200');
   const linkHoverColor = useColorModeValue('gray.800', 'white');
   const popoverContentBgColor = useColorModeValue('white', 'gray.800');
-
   return (
     <Stack direction={'row'} spacing={4}>
       {NAV_ITEMS.map((navItem) => (
@@ -94,7 +119,7 @@ const DesktopNav = () => {
             <PopoverTrigger>
               <Link
                 p={2}
-                href={navItem.href ?? '#'}
+                onClick={navItem.href}
                 fontSize={'sm'}
                 fontWeight={500}
                 color={linkColor}
@@ -106,7 +131,7 @@ const DesktopNav = () => {
               </Link>
             </PopoverTrigger>
 
-            {navItem.children && (
+            {/* {navItem.children && (
               <PopoverContent
                 border={0}
                 boxShadow={'xl'}
@@ -116,14 +141,34 @@ const DesktopNav = () => {
                 minW={'sm'}>
                 <Stack>
                   {navItem.children.map((child) => (
-                    <DesktopSubNav key={child.label} {...child} />
+                    <DesktopSubNav key={child.label} {...child}  />
                   ))}
                 </Stack>
               </PopoverContent>
-            )}
+            )} */}
           </Popover>
         </Box>
       ))}
+      <Box >
+          <Popover trigger={'hover'} placement={'bottom-start'}>
+            <PopoverTrigger>
+              <Link
+                p={2}
+                onClick={()=>window.open("https://drive.google.com/file/d/1e0UsfaFSO5pOkOz2AgOxE1cqo997aw2x/view")}
+                fontSize={'sm'}
+                href={resume}
+                download
+                fontWeight={500}
+                color={linkColor}
+                _hover={{
+                  textDecoration: 'none',
+                  color: linkHoverColor,
+                }}>
+                Resume
+              </Link>
+            </PopoverTrigger>
+          </Popover>
+        </Box>
     </Stack>
   );
 };
@@ -131,7 +176,7 @@ const DesktopNav = () => {
 const DesktopSubNav = ({ label, href, subLabel }) => {
   return (
     <Link
-      href={href}
+      onClick={()=>href.current.scrollIntoView()}
       role={'group'}
       display={'block'}
       p={2}
@@ -162,28 +207,28 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
   );
 };
 
-const MobileNav = () => {
+const MobileNav = ({NAV_ITEMS,tog}) => {
   return (
     <Stack
       bg={useColorModeValue('white', 'gray.800')}
       p={4}
       display={{ md: 'none' }}>
       {NAV_ITEMS.map((navItem) => (
-        <MobileNavItem key={navItem.label} {...navItem} />
+        <MobileNavItem key={navItem.label} {...navItem} tog={tog} />
       ))}
     </Stack>
   );
 };
 
-const MobileNavItem = ({ label, children, href }) => {
+const MobileNavItem = ({ label, children, href,tog }) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
     <Stack spacing={4} onClick={children && onToggle}>
       <Flex
         py={2}
-        as={Link}
-        href={href ?? '#'}
+        onClick={()=>{href()}}
+        // as={Link}
         justify={'space-between'}
         align={'center'}
         _hover={{
@@ -226,31 +271,6 @@ const MobileNavItem = ({ label, children, href }) => {
 };
 
 
-const NAV_ITEMS = [
-  {
-    label: 'Home',
-    href:"#Homepage"
-  },
-  {
-    label: 'About',
-   href:"#About"
-  },
-  {
-    label: 'Skills',
-    href: '#',
-  },
-  {
-    label: 'Projects',
-    href: '#Projects',
-  },
-  {
-    label: 'Contact',
-    href: '#',
-  },
-  {
-    label: 'Resume',
-    href: '#',
-  },
-];
+
  
 export default Navbar;

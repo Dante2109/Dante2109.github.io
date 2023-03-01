@@ -1,10 +1,10 @@
-import {Box,Heading,Text} from "@chakra-ui/react"
+import {Box,Heading,Text,Button,Flex,Link} from "@chakra-ui/react"
 import { Carousell } from "./Carousel"
 import React,{useEffect} from "react";
 // importing aos
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-export const Project=({data,title,description,stack,i})=>{
+export const Project=({data,title,description,stack,i,codebase,deployed})=>{
   useEffect(() => {
     AOS.init();
   }, [])
@@ -14,7 +14,7 @@ export const Project=({data,title,description,stack,i})=>{
         bgColor="rgb(251,249,247)"
         
          display={"flex"} flexDirection="column" borderRadius={"10px"} 
-         minH="600px" transition={"ease-in-out"} transitionDuration="200ms" boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" 
+         minH="650px" transition={"ease-in-out"} transitionDuration="200ms" boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" 
          _hover={{boxShadow:"rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"}} >
           <Box w="90%" p="20px" m="auto" display={"flex"} flexDirection="column" justifyContent={"space-evenly"} >
               <Carousell data={data}></Carousell>
@@ -31,6 +31,18 @@ export const Project=({data,title,description,stack,i})=>{
                 <Text fontWeight={"bold"}>
                {stack}
                 </Text>
+                <Flex m="auto" gap="20px">
+                    <Link href={deployed} target="_blank" _hover={{textDecorationStyle:"none"}} >
+                  <Button  border="1px solid black" _hover={{bgColor:"rgb(30,36,30)",color:"white"}}bgColor="white">
+                    Deployed
+                  </Button>
+                    </Link>
+                    <Link href={codebase} target="_blank"  _hover={{textDecorationStyle:"none"}} >
+                  <Button  border="1px solid black" _hover={{bgColor:"rgb(30,36,30)",color:"white"}}bgColor="white">
+                    Codebase
+                  </Button>
+                  </Link>
+                </Flex>
               </Box>
           </Box>
 
