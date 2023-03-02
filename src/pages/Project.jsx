@@ -33,12 +33,12 @@ export const Project=({data,title,description,stack,i,codebase,deployed})=>{
                 </Text>
                 <Flex m="auto" gap="20px">
                     <Link href={deployed} target="_blank" _hover={{textDecorationStyle:"none"}} >
-                  <Button  border="1px solid black" _hover={{bgColor:"rgb(30,36,30)",color:"white"}}bgColor="white">
+                  <Button  border="1px solid black" _hover={{bgColor:"rgb(30,36,30)",color:"white"}}bgColor="white" size={{base:"sm",lg:"md"}}>
                     Deployed
                   </Button>
                     </Link>
                     <Link href={codebase} target="_blank"  _hover={{textDecorationStyle:"none"}} >
-                  <Button  border="1px solid black" _hover={{bgColor:"rgb(30,36,30)",color:"white"}}bgColor="white">
+                  <Button  border="1px solid black" _hover={{bgColor:"rgb(30,36,30)",color:"white"}}bgColor="white" size={{base:"sm",lg:"md"}}>
                     Codebase
                   </Button>
                   </Link>

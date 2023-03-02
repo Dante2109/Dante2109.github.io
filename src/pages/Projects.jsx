@@ -75,15 +75,17 @@ let ProjetData=[
 ]
 export const Projects=({p})=>{
     return (
-        <Box ref={p} textAlign={"center"} my="50px" overflowX={"hidden"}>
+        <Box ref={p}>
+            <Box  textAlign={"center"} my="50px" overflowX={"hidden"}>
             <Heading pb="70px">
                 PROJECTS
             </Heading>
             <SimpleGrid columns={{base:1,sm:1,md:2}} gap="30px" >
             {ProjetData.map((el,i)=>(
                 <Project i={i} data={el.data} title={el.title} description={el.description} stack={el.TechStack} codebase={el.codbase} deployed={el.deployed}></Project>
-            ))}
+                ))}
             </SimpleGrid>
         </Box>
+    </Box>
     )
 }
