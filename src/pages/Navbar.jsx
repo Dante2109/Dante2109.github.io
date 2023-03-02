@@ -158,7 +158,7 @@ const DesktopNav = ({NAV_ITEMS}) => {
                 onClick={()=>window.open("https://drive.google.com/file/d/1e0UsfaFSO5pOkOz2AgOxE1cqo997aw2x/view")}
                 fontSize={'sm'}
                 href={resume}
-                download={"fw21_0683-Akshay_Verma_Resume.pdf"}
+                download={"fw21_0683-Akshay-Verma-Resume.pdf"}
                 fontWeight={500}
                 color={linkColor}
                 _hover={{
