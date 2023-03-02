@@ -12,7 +12,6 @@ export const Project=({data,title,description,stack,i,codebase,deployed})=>{
       <div data-aos={i%2===0?"fade-up-right":"fade-up-left"} data-aos-duration="500"  overflowX={"hidden"}>
         <Box w="80%" m="auto" border="1px solid rgb(50,12,11)" justifyContent={"space-evenly"}
         bgColor="rgb(251,249,247)"
-        
          display={"flex"} flexDirection="column" borderRadius={"10px"} 
          minH="650px" transition={"ease-in-out"} transitionDuration="200ms" boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" 
          _hover={{boxShadow:"rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"}} >

@@ -75,7 +75,7 @@ let ProjetData=[
 ]
 export const Projects=({p})=>{
     return (
-        <Box ref={p}>
+        <Box ref={p} overflowY="hidden">
             <Box  textAlign={"center"} my="50px" mt={"50px"} >
             <Heading pb="70px">
                 PROJECTS
