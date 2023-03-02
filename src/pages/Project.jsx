@@ -9,8 +9,8 @@ export const Project=({data,title,description,stack,i,codebase,deployed})=>{
     AOS.init();
   }, [])
     return (
-      <div data-aos={i%2===0?"fade-up-right":"fade-up-left"} data-aos-duration="500"  overflowX={"hidden"}>
-        <Box w="80%" m="auto" border="1px solid rgb(50,12,11)" justifyContent={"space-evenly"}
+      <div data-aos={i%2===0?"fade-up-right":"fade-up-left"} data-aos-duration="500" style={{margin:"auto"}} overflowX={"hidden"}>
+        <Box w={{base:"90%",md:"80%"}} m="auto" border="1px solid rgb(50,12,11)" justifyContent={"space-evenly"} overflowX={"hidden"}
         bgColor="rgb(251,249,247)"
          display={"flex"} flexDirection="column" borderRadius={"10px"} 
          minH="650px" transition={"ease-in-out"} transitionDuration="200ms" boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" 
