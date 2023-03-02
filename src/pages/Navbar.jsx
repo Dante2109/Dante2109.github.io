@@ -16,6 +16,7 @@ import {
   useDisclosure,
   Image
 } from '@chakra-ui/react';
+
 import {
   HamburgerIcon,
   CloseIcon,
@@ -36,7 +37,7 @@ const NAV_ITEMS = [
   },
   {
     label: 'About',
-   href:() => a.current.scrollIntoView({behavior:"smooth",block:"end"})
+   href:() => a.current.scrollIntoView({behavior:"smooth",block:"start"})
   },
   {
     label: 'Skills',
@@ -224,7 +225,7 @@ const MobileNavItem = ({ label, children, href,tog }) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
-    <Stack spacing={4} onClick={children && onToggle}>
+    <Stack spacing={4} onClick={()=>setTimeout(()=>{tog()},1000)}>
       <Flex
         py={2}
         onClick={()=>{href()}}

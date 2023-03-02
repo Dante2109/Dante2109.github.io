@@ -76,7 +76,7 @@ let ProjetData=[
 export const Projects=({p})=>{
     return (
         <Box ref={p}>
-            <Box  textAlign={"center"} my="50px" overflowX={"hidden"}>
+            <Box  textAlign={"center"} my="50px" mt={"50px"} >
             <Heading pb="70px">
                 PROJECTS
             </Heading>
