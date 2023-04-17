@@ -23,7 +23,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from '@chakra-ui/icons';
-import resume from "../assets/Akshay_Verma_Resume.pdf"
+import resume from "../assets/Akshay-Verma-Resume.pdf"
 import image from "../images/Akshayverma1.png"
 function Navbar({h,a,p,c,g,tt}) {
 const { isOpen, onToggle } = useDisclosure();
