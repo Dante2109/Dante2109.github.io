@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import BG1 from "../images/bg1.jpg"
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import resume from "../assets/fw21_0683-Akshay_Verma_Resume.pdf"
+import resume from "../assets/Akshay_Verma_Resume.pdf"
 export const Homepage=({h})=> {
   useEffect(() => {
     AOS.init();
