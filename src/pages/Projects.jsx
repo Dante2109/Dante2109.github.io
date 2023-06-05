@@ -69,7 +69,7 @@ let ProjetData=[
         description:"Snapdeal website, an e-commerce website which deals with the sales of various products like clothing products, electronics etc. This is an collaborative project completed in a span of 5 days.",
         TechStack:"REACT | HTML/CSS | JAVASCRIPT | CHAKRAUI | REACT ROUTER DOM | AXIOS | GITHUB",
         data:snapdeal,
-        deployed:"https://darling-mooncake-57603b.netlify.app/",
+        deployed:"https://fashionista-rct201.netlify.app/",
         codbase:"https://github.com/fahad9988/warm-afternoon-3310/tree/master/warm-afternoon-3310"
     }
 ]
