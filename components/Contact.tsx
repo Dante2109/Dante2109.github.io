@@ -2,7 +2,9 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Send, AlertCircle } from "lucide-react";
+import { Send, AlertCircle, CheckCircle, XCircle } from "lucide-react";
+
+type FormStatus = "idle" | "submitting" | "success" | "error";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -12,7 +14,8 @@ export default function Contact() {
   });
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<FormStatus>("idle");
+  const [statusMessage, setStatusMessage] = useState("");
 
   const validate = () => {
     const newErrors: { [key: string]: string } = {};
@@ -26,26 +29,55 @@ export default function Contact() {
     return newErrors;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const validationErrors = validate();
-    
+
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
 
-    setIsSubmitting(true);
+    setStatus("submitting");
     setErrors({});
 
-    // Simulate API call
-    setTimeout(() => {
-      console.log("Form submitted:", formData);
-      alert("Thanks for reaching out! I'll get back to you soon.");
-      setFormData({ name: "", email: "", message: "" });
-      setIsSubmitting(false);
-    }, 1000);
+    try {
+      const accessKey = "77248b43-f521-4366-9e64-fee2044b5826";
+
+      if (!accessKey) {
+        throw new Error("Web3Forms access key is not configured.");
+      }
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `Portfolio Contact from ${formData.name}`,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setStatus("success");
+        setStatusMessage("Thanks for reaching out! I'll get back to you soon.");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        throw new Error(result.message || "Something went wrong.");
+      }
+    } catch (err) {
+      setStatus("error");
+      setStatusMessage(
+        err instanceof Error ? err.message : "Failed to send message. Please try again."
+      );
+    }
   };
+
+  const isSubmitting = status === "submitting";
 
   return (
     <section id="contact" className="py-0 border-t border-brand-line bg-brand-bg relative z-10">
@@ -61,106 +93,162 @@ export default function Contact() {
 
           {/* Right Side: Form */}
           <div className="md:col-span-8 p-8 md:p-12">
-            <form onSubmit={handleSubmit} noValidate className="space-y-12 max-w-2xl">
-              {/* Name field */}
-              <div className="space-y-4">
-                <div className="flex justify-between items-baseline">
-                  <label htmlFor="name" className="text-[11px] font-bold tracking-widest uppercase text-brand-muted block">01 / Full Name</label>
+            <AnimatePresence mode="wait">
+              {status === "success" ? (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  className="flex flex-col items-center justify-center text-center max-w-2xl py-16 md:py-24 space-y-6"
+                >
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", delay: 0.2 }}
+                  >
+                    <CheckCircle size={64} className="text-green-400" strokeWidth={1.5} />
+                  </motion.div>
+                  <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight">
+                    Message Sent
+                  </h3>
+                  <p className="text-brand-muted text-lg max-w-md">{statusMessage}</p>
+                  <button
+                    onClick={() => setStatus("idle")}
+                    className="mt-4 text-sm font-bold tracking-widest uppercase text-brand-accent hover:opacity-70 transition-opacity"
+                  >
+                    Send Another Message →
+                  </button>
+                </motion.div>
+              ) : (
+                <motion.form
+                  key="form"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  onSubmit={handleSubmit}
+                  noValidate
+                  className="space-y-12 max-w-2xl"
+                >
+                  {/* Error banner */}
                   <AnimatePresence>
-                    {errors.name && (
-                      <motion.span 
-                        initial={{ opacity: 0, x: 10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0 }}
-                        className="text-[10px] font-mono text-red-400 uppercase tracking-tighter flex items-center gap-1"
+                    {status === "error" && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="flex items-center gap-3 p-4 border border-red-400/30 bg-red-400/5 text-red-400 text-sm font-mono"
                       >
-                        <AlertCircle size={10} /> {errors.name}
-                      </motion.span>
+                        <XCircle size={18} className="shrink-0" />
+                        <span>{statusMessage}</span>
+                      </motion.div>
                     )}
                   </AnimatePresence>
-                </div>
-                <input
-                  id="name"
-                  type="text"
-                  placeholder="John Doe"
-                  className={`w-full bg-transparent border-b ${errors.name ? 'border-red-400' : 'border-brand-line'} py-4 text-xl md:text-2xl font-light focus:outline-none focus:border-brand-accent transition-colors placeholder:opacity-20`}
-                  value={formData.name}
-                  onChange={(e) => {
-                    setFormData({ ...formData, name: e.target.value });
-                    if (errors.name) setErrors(prev => ({ ...prev, name: "" }));
-                  }}
-                />
-              </div>
 
-              {/* Email field */}
-              <div className="space-y-4">
-                <div className="flex justify-between items-baseline">
-                  <label htmlFor="email" className="text-[11px] font-bold tracking-widest uppercase text-brand-muted block">02 / Email Address</label>
-                  <AnimatePresence>
-                    {errors.email && (
-                      <motion.span 
-                        initial={{ opacity: 0, x: 10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0 }}
-                        className="text-[10px] font-mono text-red-400 uppercase tracking-tighter flex items-center gap-1"
-                      >
-                        <AlertCircle size={10} /> {errors.email}
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
-                </div>
-                <input
-                  id="email"
-                  type="email"
-                  placeholder="john@example.com"
-                  className={`w-full bg-transparent border-b ${errors.email ? 'border-red-400' : 'border-brand-line'} py-4 text-xl md:text-2xl font-light focus:outline-none focus:border-brand-accent transition-colors placeholder:opacity-20`}
-                  value={formData.email}
-                  onChange={(e) => {
-                    setFormData({ ...formData, email: e.target.value });
-                    if (errors.email) setErrors(prev => ({ ...prev, email: "" }));
-                  }}
-                />
-              </div>
+                  {/* Name field */}
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-baseline">
+                      <label htmlFor="name" className="text-[11px] font-bold tracking-widest uppercase text-brand-muted block">01 / Full Name</label>
+                      <AnimatePresence>
+                        {errors.name && (
+                          <motion.span
+                            initial={{ opacity: 0, x: 10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0 }}
+                            className="text-[10px] font-mono text-red-400 uppercase tracking-tighter flex items-center gap-1"
+                          >
+                            <AlertCircle size={10} /> {errors.name}
+                          </motion.span>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                    <input
+                      id="name"
+                      type="text"
+                      placeholder="John Doe"
+                      className={`w-full bg-transparent border-b ${errors.name ? 'border-red-400' : 'border-brand-line'} py-4 text-xl md:text-2xl font-light focus:outline-none focus:border-brand-accent transition-colors placeholder:opacity-20`}
+                      value={formData.name}
+                      onChange={(e) => {
+                        setFormData({ ...formData, name: e.target.value });
+                        if (errors.name) setErrors(prev => ({ ...prev, name: "" }));
+                      }}
+                      disabled={isSubmitting}
+                    />
+                  </div>
 
-              {/* Message field */}
-              <div className="space-y-4">
-                <div className="flex justify-between items-baseline">
-                  <label htmlFor="message" className="text-[11px] font-bold tracking-widest uppercase text-brand-muted block">03 / Your Message</label>
-                  <AnimatePresence>
-                    {errors.message && (
-                      <motion.span 
-                        initial={{ opacity: 0, x: 10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0 }}
-                        className="text-[10px] font-mono text-red-400 uppercase tracking-tighter flex items-center gap-1"
-                      >
-                        <AlertCircle size={10} /> {errors.message}
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
-                </div>
-                <textarea
-                  id="message"
-                  rows={4}
-                  placeholder="Hello, I'm interested in..."
-                  className={`w-full bg-transparent border-b ${errors.message ? 'border-red-400' : 'border-brand-line'} py-4 text-xl md:text-2xl font-light focus:outline-none focus:border-brand-accent transition-colors resize-none placeholder:opacity-20`}
-                  value={formData.message}
-                  onChange={(e) => {
-                    setFormData({ ...formData, message: e.target.value });
-                    if (errors.message) setErrors(prev => ({ ...prev, message: "" }));
-                  }}
-                />
-              </div>
+                  {/* Email field */}
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-baseline">
+                      <label htmlFor="email" className="text-[11px] font-bold tracking-widest uppercase text-brand-muted block">02 / Email Address</label>
+                      <AnimatePresence>
+                        {errors.email && (
+                          <motion.span
+                            initial={{ opacity: 0, x: 10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0 }}
+                            className="text-[10px] font-mono text-red-400 uppercase tracking-tighter flex items-center gap-1"
+                          >
+                            <AlertCircle size={10} /> {errors.email}
+                          </motion.span>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                    <input
+                      id="email"
+                      type="email"
+                      placeholder="john@example.com"
+                      className={`w-full bg-transparent border-b ${errors.email ? 'border-red-400' : 'border-brand-line'} py-4 text-xl md:text-2xl font-light focus:outline-none focus:border-brand-accent transition-colors placeholder:opacity-20`}
+                      value={formData.email}
+                      onChange={(e) => {
+                        setFormData({ ...formData, email: e.target.value });
+                        if (errors.email) setErrors(prev => ({ ...prev, email: "" }));
+                      }}
+                      disabled={isSubmitting}
+                    />
+                  </div>
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="group relative flex items-center gap-4 text-2xl md:text-3xl font-black bg-brand-accent text-brand-bg px-8 md:px-10 py-5 md:py-6 transition-all hover:opacity-90 disabled:opacity-50 overflow-hidden"
-              >
-                <span className="relative z-10">{isSubmitting ? "SENDING..." : "SEND MESSAGE"}</span>
-                {!isSubmitting && <Send size={24} className="relative z-10 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
-              </button>
-            </form>
+                  {/* Message field */}
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-baseline">
+                      <label htmlFor="message" className="text-[11px] font-bold tracking-widest uppercase text-brand-muted block">03 / Your Message</label>
+                      <AnimatePresence>
+                        {errors.message && (
+                          <motion.span
+                            initial={{ opacity: 0, x: 10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0 }}
+                            className="text-[10px] font-mono text-red-400 uppercase tracking-tighter flex items-center gap-1"
+                          >
+                            <AlertCircle size={10} /> {errors.message}
+                          </motion.span>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                    <textarea
+                      id="message"
+                      rows={4}
+                      placeholder="Hello, I'm interested in..."
+                      className={`w-full bg-transparent border-b ${errors.message ? 'border-red-400' : 'border-brand-line'} py-4 text-xl md:text-2xl font-light focus:outline-none focus:border-brand-accent transition-colors resize-none placeholder:opacity-20`}
+                      value={formData.message}
+                      onChange={(e) => {
+                        setFormData({ ...formData, message: e.target.value });
+                        if (errors.message) setErrors(prev => ({ ...prev, message: "" }));
+                      }}
+                      disabled={isSubmitting}
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="group relative flex items-center gap-4 text-2xl md:text-3xl font-black bg-brand-accent text-brand-bg px-8 md:px-10 py-5 md:py-6 transition-all hover:opacity-90 disabled:opacity-50 overflow-hidden"
+                  >
+                    <span className="relative z-10">{isSubmitting ? "SENDING..." : "SEND MESSAGE"}</span>
+                    {!isSubmitting && <Send size={24} className="relative z-10 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
+                  </button>
+                </motion.form>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </div>
