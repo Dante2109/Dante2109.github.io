@@ -5,7 +5,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  transpilePackages: ["motion"],
 };
 
 export default nextConfig;

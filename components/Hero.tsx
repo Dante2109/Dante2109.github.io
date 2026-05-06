@@ -9,7 +9,7 @@ export default function Hero() {
   const y1 = useTransform(scrollY, [0, 500], [0, 150]);
 
   return (
-    <section className="relative min-h-screen md:min-h-[90vh] flex flex-col justify-center overflow-x-hidden">
+    <section className="relative min-h-screen md:min-h-[90vh] mt-20 flex flex-col justify-center overflow-x-hidden">
       <div className="container-grid flex flex-col justify-center flex-1 py-20 px-6 md:section-padding border-b border-brand-line">
         <div className="relative z-10">
           <motion.div
@@ -19,7 +19,7 @@ export default function Hero() {
             className="mb-8"
           >
             <span className="text-[14px] font-medium tracking-[0.5em] opacity-50 uppercase block">
-              Advanced Web Architecture
+              Akshay Verma
             </span>
           </motion.div>
 
