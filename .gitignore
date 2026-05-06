@@ -5,3 +5,5 @@ coverage/
 .next/
 .env*
 !.env.example
+out/
+dist/
