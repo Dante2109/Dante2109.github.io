@@ -59,8 +59,8 @@ export default function Hero() {
             <span className="w-4 h-[1px] bg-brand-muted" /> 03 / Socials
           </span>
           <div className="flex flex-col gap-2 text-[12px] font-bold uppercase tracking-wider">
-            <a href="https://linkedin.com/in/akshayverma" target="_blank" className="hover:text-brand-muted transition-colors">&rarr; LinkedIn</a>
-            <a href="https://github.com/akshayverma" target="_blank" className="hover:text-brand-muted transition-colors">&rarr; GitHub</a>
+            <a href="https://linkedin.com/in/akshayverma21" target="_blank" className="hover:text-brand-muted transition-colors">&rarr; LinkedIn</a>
+            <a href="https://github.com/AkshayVerma-Ipsator" target="_blank" className="hover:text-brand-muted transition-colors">&rarr; GitHub</a>
             <a href="https://dante2109.github.io" target="_blank" className="hover:text-brand-muted transition-colors">&rarr; Portfolio</a>
           </div>
         </div>

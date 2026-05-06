@@ -113,7 +113,7 @@ export default function Home() {
                   <a href="https://github.com/AkshayVerma-Ipsator" target="_blank" className="text-[11px] font-bold tracking-[0.2em] uppercase hover:text-brand-accent text-brand-muted transition-colors">GitHub</a>
                 </div>
                 <div className="p-8 md:p-10 flex items-center justify-center">
-                  <a href="https://linkedin.com/in/akshay-verma-ipsator" target="_blank" className="text-[11px] font-bold tracking-[0.2em] uppercase hover:text-brand-accent text-brand-muted transition-colors">LinkedIn</a>
+                  <a href="https://linkedin.com/in/akshayverma21" target="_blank" className="text-[11px] font-bold tracking-[0.2em] uppercase hover:text-brand-accent text-brand-muted transition-colors">LinkedIn</a>
                 </div>
               </div>
             </div>
