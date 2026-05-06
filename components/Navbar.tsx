@@ -42,7 +42,7 @@ export default function Navbar({ toggleTheme, theme }: { toggleTheme: () => void
         <div className="container-grid h-20 md:h-24 flex items-center justify-between border-b border-brand-line px-6 md:px-12">
           <div className="flex items-center gap-10">
             <div className="font-black text-xl tracking-tighter">
-              AV<span className="text-brand-muted"> / 24</span>
+              AV<span className="text-brand-muted"> / 27</span>
             </div>
             <span className="text-[11px] font-medium tracking-[0.2em] uppercase hidden lg:block text-brand-muted">
               Frontend Developer &bull; available for hire
